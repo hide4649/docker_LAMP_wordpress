@@ -1,0 +1,28 @@
+version: '3.9'
+services: 
+    web:
+      build:
+        context: ./apache/
+        dockerfile: dockerfile
+      tty: true
+      command: /sbin/init
+      ports: 
+        - "80:80"
+      volumes:
+        - /Users/hide/docker/backend/:/home/byd_ops/public_html/
+
+    db:
+      build:
+        context: ./mysql/
+        dockerfile: dockerfile
+      tty: true
+      command: /sbin/init
+      ports: "3306:3306"
+    
+    #    volumes:
+    #      - /Users/hide/docker/backend/:/home/byd_ops/public_html/
+    #    environment:
+    #      - MYSQL_DATABASE=${DB_NAME:-laravel_local}
+    #      - MYSQL_USER=${DB_USER:-phper}
+    #      - MYSQL_PASSWORD=${DB_PASS:-secret}
+    #      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
